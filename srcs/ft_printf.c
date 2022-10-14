@@ -1,18 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aburnott <aburnott@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 14:29:27 by aburnott          #+#    #+#             */
-/*   Updated: 2022/10/14 14:45:28 by aburnott         ###   ########.fr       */
+/*   Created: 2022/10/14 14:43:34 by aburnott          #+#    #+#             */
+/*   Updated: 2022/10/14 14:43:54 by aburnott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-
-# include <stdarg.h>
-
-#endif
+#include "libft.h"
+#include "ft_printf.h"
