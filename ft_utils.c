@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils_one.c                                     :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aburnott <aburnott@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 13:43:38 by aburnott          #+#    #+#             */
-/*   Updated: 2022/10/18 17:44:59 by aburnott         ###   ########.fr       */
+/*   Updated: 2022/10/18 20:47:11 by aburnott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strchr(const char *s)
 	int	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i])
 	{
 		if (s[i] == '%')
@@ -36,32 +38,36 @@ size_t	ft_strlen(const char *s)
 	return (size);
 }
 
-void	ft_putchar(int c)
+void	ft_putchar(int c, t_data *data)
 {
-	t_data	*data;
-
 	write(1, &c, 1);
 	data->len += 1;
 }
 
-void	ft_putstr(char *s)
+void	ft_putstr(char *s, t_data *data)
 {
-	t_data	*data;
 	int		res;
+	int		i;
 
-	res = 0;
-	while (*s)
+	if (!s)
 	{
-		write (1, &s, 1);
+		write (1, "(null)", 6);
+		data->len += 6;
+		return ;
+	}
+	res = 0;
+	i = 0;
+	while (s[i])
+	{
+		write (1, &s[i], 1);
+		i++;
 		res++;
 	}
 	data->len += res;
 }
 
-void	ft_putnbr(int nb)
+void	ft_putnbr(int nb, t_data *data)
 {
-	t_data	*data;
-
 	if (nb == -2147483648)
 	{
 		write (1, "-2147483648", 11);
@@ -72,13 +78,13 @@ void	ft_putnbr(int nb)
 	{
 		write (1, "-", 1);
 		data->len += 1;
-		ft_putnbr(-nb);
+		nb *= -1;
 	}
-	if (nb >= 0 && nb <= 9)
-		ft_putchar(nb);
-	else
+	if (nb > 9)
 	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
+		ft_putnbr(nb / 10, data);
+		ft_putnbr(nb % 10, data);
 	}
+	else
+		ft_putchar(nb + 48, data);
 }
