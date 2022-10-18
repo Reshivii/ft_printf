@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_check_format.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aburnott <aburnott@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 14:29:27 by aburnott          #+#    #+#             */
-/*   Updated: 2022/10/18 11:33:26 by aburnott         ###   ########.fr       */
+/*   Created: 2022/10/18 11:33:39 by aburnott          #+#    #+#             */
+/*   Updated: 2022/10/18 12:24:56 by aburnott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-
-typedef struct s_data
+int	ft_check_format(va_list arg, const char *format, t_data i)
 {
-	int	len;
-	int	width;
-}				t_data;
 
-int	ft_printf(const char *s, ...);
-
-#endif
+}
