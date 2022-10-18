@@ -6,35 +6,38 @@
 /*   By: aburnott <aburnott@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 14:43:34 by aburnott          #+#    #+#             */
-/*   Updated: 2022/10/18 14:14:39 by aburnott         ###   ########.fr       */
+/*   Updated: 2022/10/18 17:50:07 by aburnott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-const char	ft_check_format(va_list arg, const char *format, t_data *data)
+const char	*ft_check_format(va_list arg, const char *format, t_data *data)
 {
 	if (*format == 'c')
-		ft_putchar_fd(arg, 1);
+		ft_putchar(va_arg(arg, int));
 	else if (*format == 's')
-		ft_putstr_fd(arg, 1);
-	else if (*format == 'p')
-		ft_void_hexa(arg);
-	else if (*format == 'i')
-		ft_putnbr_fd(arg, 1);
-	else if (*format == 'u')
-		ft_uns_putnbr(arg);
-	else if (*format == 'x')
-		ft_hexa(arg, 1);
-	else if (*format == 'X')
-		ft_hexa(arg, 2);
+		ft_putstr(va_arg(arg, char *));
+	// else if (*format == 'p')
+	// 	ft_void_hexa(va_arg(arg, void *));
+	else if (*format == 'i' || *format == 'd')
+		ft_putnbr(va_arg(arg, int));
+	// else if (*format == 'u')
+	// 	ft_uns_putnbr(va_arg(arg, unsigned int));
+	// else if (*format == 'x')
+	// 	ft_hexa(va_arg(arg, unsigned int), 1);
+	// else if (*format == 'X')
+	// 	ft_hexa(va_arg(arg, unsigned int), 2);
+	else if (*format == '%')
+		ft_putchar('%');
+	return (format);
 }
 
-const char	ft_print_text(t_data *data, char *s)
+const char	*ft_print_text(t_data *data, const char *s)
 {
 	char	*next;
 
-	next = ft_strchr(s, '%');
+	next = ft_strchr(s);
 	if (next)
 		data->width = (next - s);
 	else
@@ -69,4 +72,13 @@ int	ft_printf(const char *s, ...)
 	}
 	va_end(arg);
 	return (data.len);
+}
+
+#include <stdio.h>
+
+int main(void)
+{
+	printf("EXCEPTED -> Test %c %c\n", 'a', 'b');
+	ft_printf("RESULT -> Test %c %c\n", 'a', 'b');
+	return (0);
 }
