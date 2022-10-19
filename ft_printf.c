@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aburnott <aburnott@student.s19.be>         +#+  +:+       +#+        */
+/*   By: aburnott <aburnott@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 14:43:34 by aburnott          #+#    #+#             */
-/*   Updated: 2022/10/18 21:09:59 by aburnott         ###   ########.fr       */
+/*   Updated: 2022/10/19 13:20:17 by aburnott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,3 @@ int	ft_printf(const char *s, ...)
 	va_end(arg);
 	return (data.len);
 }
-
-// #include <stdio.h>
-
-// int main(void)
-// {
-// 	printf("EXCEPTED -> %p %p\n", 0, 0);
-// 	ft_printf("RESULT -> %p %p\n", 0, 0);
-// 	return (0);
-// }
