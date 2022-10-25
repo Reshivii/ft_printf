@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aburnott <aburnott@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 21:56:19 by aburnott          #+#    #+#             */
-/*   Updated: 2022/10/26 00:24:42 by aburnott         ###   ########.fr       */
+/*   Created: 2022/10/25 18:58:01 by aburnott          #+#    #+#             */
+/*   Updated: 2022/10/26 00:25:39 by aburnott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include <stdio.h>
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-
-int	ft_printf(const char *s, ...);
-int	ft_putchar(char c);
-int	ft_putstr(char *s);
-int	ft_putnbr(long nb);
-
-#endif
+int	main(void)
+{
+	//ft_printf("test");
+	printf("ORI: \n%d\n", printf("%d %d", -2147483647, 55));
+	printf("MINE: \n%d\n", ft_printf("%d %d", -2147483647, 55));
+	return (0);
+}

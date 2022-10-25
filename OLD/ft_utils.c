@@ -5,60 +5,93 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aburnott <aburnott@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 22:14:24 by aburnott          #+#    #+#             */
-/*   Updated: 2022/10/26 00:27:49 by aburnott         ###   ########.fr       */
+/*   Created: 2022/10/18 13:43:38 by aburnott          #+#    #+#             */
+/*   Updated: 2022/10/25 23:15:01 by aburnott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-int	ft_putchar(char c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
-int	ft_putstr(char *s)
+char	*ft_strchr(const char *s)
 {
 	int	i;
 
 	i = 0;
 	if (!s)
-	{
-		write (1, "(null)", 6);
-		return (6);
-	}
+		return (0);
 	while (s[i])
+	{
+		if (s[i] == '%')
+			return ((char *)s + i);
 		i++;
-	write (1, s, i);
-	return (i);
+	}
+	return (0);
 }
 
-int	ft_putnbr(long nb)
+size_t	ft_strlen(const char *s)
 {
-	static int	len;
-	printf("LENNNN SIZE: %d\n\n\n", len);
+	int	size;
+
+	size = 0;
+	while (s[size])
+		size++;
+	return (size);
+}
+
+int	ft_putchar(int c)
+{
+	int	i;
+
+	i = 0;
+	write(1, &c, 1);
+	return (i + 1);
+}
+
+int	ft_putstr(char *s)
+{
+	int		len;
+	int		i;
 
 	len = 0;
+	i = 0;
+	if (!s)
+	{
+		write (1, "(null)", 6);
+		len += 6;
+		return (len);
+	}
+	while (s[i])
+	{
+		write (1, &s[i], 1);
+		i++;
+		len++;
+	}
+	return (len);
+}
+
+int	ft_putnbr(int nb)
+{
+	int	len;
+
+	len = 0;
+	if (nb == -2147483648)
+	{
+		write (1, "-2147483648", 11);
+		len += 11;
+		return (len);
+	}
 	if (nb < 0)
 	{
-		write(1, "-", 1);
-		len++;
-		printf("LEN SIZE: %d\n\n\n", len);
+		write (1, "-", 1);
+		len += 1;
 		nb *= -1;
 	}
-	if (nb >= 10)
+	if (nb > 9)
 	{
 		ft_putnbr(nb / 10);
-		nb %= 10;
+		ft_putnbr(nb % 10);
 	}
-	if (nb <= 9)
-	{
-		nb += 48;
-		write (1, &nb, 1);
-	}
-	len++;
-	printf("LLLEN SIZE: %d\n\n\n", len);
+	else
+		ft_putchar(nb + 48);
 	return (len);
 }

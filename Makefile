@@ -6,13 +6,13 @@
 #    By: aburnott <aburnott@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/13 14:09:18 by aburnott          #+#    #+#              #
-#    Updated: 2022/10/18 20:40:34 by aburnott         ###   ########.fr        #
+#    Updated: 2022/10/25 23:04:14 by aburnott         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRCS = ft_printf.c ft_utils.c ft_hexa.c
+SRCS = ft_printf.c ft_utils.c #ft_hexa.c
 
 OBJS = $(SRCS:.c=.o)
 

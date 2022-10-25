@@ -3,76 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aburnott <aburnott@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aburnott <aburnott@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 14:43:34 by aburnott          #+#    #+#             */
-/*   Updated: 2022/10/19 13:20:17 by aburnott         ###   ########.fr       */
+/*   Created: 2022/10/25 21:27:10 by aburnott          #+#    #+#             */
+/*   Updated: 2022/10/26 00:24:49 by aburnott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-const char	*ft_check_format(va_list arg, const char *format, t_data *data)
+static int	check_format(va_list arg, char c, int *len)
 {
-	if (*format == 'c')
-		ft_putchar(va_arg(arg, int), data);
-	else if (*format == 's')
-		ft_putstr(va_arg(arg, char *), data);
-	else if (*format == 'p')
-		ft_void_hexa(va_arg(arg, void *), data, 1);
-	else if (*format == 'i' || *format == 'd')
-		ft_putnbr(va_arg(arg, int), data);
-	else if (*format == 'u')
-		ft_uns_putnbr(va_arg(arg, unsigned int), data);
-	else if (*format == 'x')
-		ft_hexa(va_arg(arg, unsigned int), data, 1);
-	else if (*format == 'X')
-		ft_hexa(va_arg(arg, unsigned int), data, 2);
-	else if (*format == '%')
-		ft_putchar('%', data);
+	if (c == 'c')
+		*len += ft_putchar(va_arg(arg, int));
+	else if (c == 's')
+		*len += ft_putstr(va_arg(arg, char *));
+	// else if (c == 'p')
+	// 	*len += ft_void_hex();
+	else if (c == 'i' || c == 'd')
+		*len += ft_putnbr(va_arg(arg, int));
+	else if (c == 'u')
+		*len += ft_putnbr(va_arg(arg, unsigned int));
+	// else if (c == 'x')
+	// 	*len += ft_hexa();
+	// else if (c == 'X')
+	// 	*len += ft_hexa();
+	// else if (c == '%')
+	// 	*len += ft_putchar('%');
 	else
 		return (0);
-	++format;
-	return (format);
-}
-
-const char	*ft_print_text(t_data *data, const char *s)
-{
-	char	*next;
-
-	next = ft_strchr(s);
-	if (next)
-		data->width = (next - s);
-	else
-		data->width = ft_strlen(s);
-	write (1, s, data->width);
-	data->len += data->width;
-	while (*s && *s != '%')
-		++s;
-	return (s);
+	return (1);
 }
 
 int	ft_printf(const char *s, ...)
 {
 	va_list	arg;
-	t_data	data;
+	int		len;
+	int		i;
 
-	data.len = 0;
-	data.width = 0;
 	va_start(arg, s);
-	if (!s)
+	len = 0;
+	i = 0;
+	while (s[i])
 	{
-		write(1, "(null)", 6);
-		va_end(arg);
-		return (data.len);
-	}
-	while (*s)
-	{
-		if (*s == '%')
-			s = ft_check_format(arg, s + 1, &data);
+		if (s[i] == '%')
+			check_format(arg, s[++i], &len);
 		else
-			s = ft_print_text(&data, s);
+			len += ft_putchar(s[i]);
+		i++;
 	}
-	va_end(arg);
-	return (data.len);
+	return (len);
 }
+
+/* Checking for NULL string
+if (!s)
+{
+	write (1, "(null)", 6);
+	len += 6;
+	va_end(arg);
+}*/
