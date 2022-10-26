@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bonus.h                                  :+:      :+:    :+:   */
+/*   ft_put_flag.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aburnott <aburnott@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 21:56:19 by aburnott          #+#    #+#             */
-/*   Updated: 2022/10/26 23:55:41 by aburnott         ###   ########.fr       */
+/*   Created: 2022/10/27 00:24:03 by aburnott          #+#    #+#             */
+/*   Updated: 2022/10/27 00:28:52 by aburnott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_BONUS_H
-# define FT_PRINTF_BONUS_H
+#include "ft_printf_bonus.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-
-typedef struct s_type
+int ft_put_hex(t_type *type)
 {
-	int	space;
-	int	hashtag;
-	int	plus;
-}			t_type;
+	if()
+}
 
-int	ft_printf(const char *s, ...);
-int	ft_putchar(char c);
-int	ft_putstr(char *s);
-int	ft_putnbr(long nb, int len);
-int	ft_hexa(unsigned long hex, int len, int type);
-int	ft_void_hexa(void *p, int type);
-
-#endif
+int	ft_put_sp(t_type *type)
+{
+	if (type->plus)
+	{
+		write(1, "+", 1);
+		return (1);
+	}
+	else if (type->space)
+	{
+		write (1, " ", 1);
+		return (1);
+	}
+	return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: aburnott <aburnott@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:14:24 by aburnott          #+#    #+#             */
-/*   Updated: 2022/10/26 22:38:40 by aburnott         ###   ########.fr       */
+/*   Updated: 2022/10/27 00:24:33 by aburnott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_putstr(char *s)
 	return (i);
 }
 
-int	ft_putnbr(long nb, int len)
+int	ft_putnbr(long nb, int len, t_type *type)
 {
 	if (nb < 0)
 	{
@@ -42,6 +42,8 @@ int	ft_putnbr(long nb, int len)
 		len++;
 		nb *= -1;
 	}
+	else
+		len += ft_put_sp(type);
 	if (nb > 9)
 	{
 		len += ft_putnbr(nb / 10, 1);
