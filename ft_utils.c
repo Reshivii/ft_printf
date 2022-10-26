@@ -6,12 +6,11 @@
 /*   By: aburnott <aburnott@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:14:24 by aburnott          #+#    #+#             */
-/*   Updated: 2022/10/26 00:27:49 by aburnott         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:37:43 by aburnott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	ft_putchar(char c)
 {
@@ -35,22 +34,17 @@ int	ft_putstr(char *s)
 	return (i);
 }
 
-int	ft_putnbr(long nb)
+int	ft_putnbr(long nb, int len)
 {
-	static int	len;
-	printf("LENNNN SIZE: %d\n\n\n", len);
-
-	len = 0;
 	if (nb < 0)
 	{
 		write(1, "-", 1);
 		len++;
-		printf("LEN SIZE: %d\n\n\n", len);
 		nb *= -1;
 	}
-	if (nb >= 10)
+	if (nb > 9)
 	{
-		ft_putnbr(nb / 10);
+		len += ft_putnbr(nb / 10, 1);
 		nb %= 10;
 	}
 	if (nb <= 9)
@@ -58,7 +52,45 @@ int	ft_putnbr(long nb)
 		nb += 48;
 		write (1, &nb, 1);
 	}
-	len++;
-	printf("LLLEN SIZE: %d\n\n\n", len);
+	return (len);
+}
+
+int	ft_hexa(unsigned long hex, int len, int type)
+{
+	if (hex >= 16)
+		len += ft_hexa(hex / 16, 0, type);
+	hex %= 16;
+	if (hex >= 10)
+	{
+		if (type == 1)
+			hex += 87;
+		else
+			hex += 55;
+		write (1, &hex, 1);
+		len++;
+	}
+	else
+	{
+		hex += 48;
+		write (1, &hex, 1);
+		len++;
+	}
+	return (len);
+}
+
+int	ft_void_hexa(void *p, int type)
+{
+	int	len;
+
+	len = 0;
+	write (1, "0x", 2);
+	len += 2;
+	if ((unsigned long)p == 0)
+	{
+		write (1, "0", 1);
+		len += 1;
+	}
+	else
+		len += ft_hexa((unsigned long)p, 0, type);
 	return (len);
 }

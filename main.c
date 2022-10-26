@@ -6,17 +6,16 @@
 /*   By: aburnott <aburnott@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 18:58:01 by aburnott          #+#    #+#             */
-/*   Updated: 2022/10/26 00:25:39 by aburnott         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:42:04 by aburnott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "ft_printf.h"
+#include <limits.h>
 
 int	main(void)
 {
-	//ft_printf("test");
-	printf("ORI: \n%d\n", printf("%d %d", -2147483647, 55));
-	printf("MINE: \n%d\n", ft_printf("%d %d", -2147483647, 55));
+	ft_printf("%%%%");
 	return (0);
 }
