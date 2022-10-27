@@ -6,7 +6,7 @@
 /*   By: aburnott <aburnott@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 21:27:10 by aburnott          #+#    #+#             */
-/*   Updated: 2022/10/27 10:13:07 by aburnott         ###   ########.fr       */
+/*   Updated: 2022/10/27 16:15:29 by aburnott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	check_format(va_list arg, char c, int *len)
 	else if (c == '%')
 		*len += ft_putchar('%');
 	else
-		return ;
+		*len += ft_putchar(c);
 }
 
 int	ft_printf(const char *s, ...)
@@ -51,5 +51,6 @@ int	ft_printf(const char *s, ...)
 			len += ft_putchar(s[i]);
 		i++;
 	}
+	va_end(arg);
 	return (len);
 }
