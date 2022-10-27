@@ -6,7 +6,7 @@
 /*   By: aburnott <aburnott@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 21:27:10 by aburnott          #+#    #+#             */
-/*   Updated: 2022/10/26 13:39:34 by aburnott         ###   ########.fr       */
+/*   Updated: 2022/10/27 10:13:07 by aburnott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,6 @@ int	ft_printf(const char *s, ...)
 
 	va_start(arg, s);
 	len = 0;
-	if (!s)
-	{
-		write (1, "(null)", 6);
-		len += 6;
-		va_end(arg);
-	}
 	i = 0;
 	while (s[i])
 	{
