@@ -6,7 +6,7 @@
 /*   By: aburnott <aburnott@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 21:27:10 by aburnott          #+#    #+#             */
-/*   Updated: 2022/10/27 16:15:30 by aburnott         ###   ########.fr       */
+/*   Updated: 2022/10/29 01:10:16 by aburnott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 static int	check_flag(char c, t_type *flag)
 {
-	int		i;
-
-	i = 0;
 	if (c == '#')
 		flag->hashtag = 1;
 	else if (c == ' ')
